@@ -1,0 +1,227 @@
+/* Changes.txt - for Castle Yankee */
+
+1999.8.8	Changed Project::Backup() to use a dot-notation date.
+
+1999.8.7	Various changes to compile under the new CodeWarrior, mostly adding
+			"#include <string>" to header files.
+
+			Changed Project::Backup() and PrepareUpload() to put up message
+			windows.
+
+3/26/99		Fixed ClassWind::SaveNameAndSuperclasses() to set the superclasses
+			to the empty string if there aren't any.  Fixes a bug whereby
+			a class couldn't get rid of its superclasses once they had been set.
+
+3/5/99		Changed ClassesView::DrawItem() and Project::GenerateCode() to
+			handle divider "classes", similar to the "ugly notes hack" within
+			classes.
+
+3/4/99		Changed Class::Import() to handle (limited) use of CDATA sections
+			in the import file.
+
+			Changed Export() methods of Class, Method, and Variable to use
+			CDATA sections when exporting.
+
+			Added Project::PrepareUpload() and changed MessageReceived() to
+			respond to new PrepareUploadMessage.  Changed
+			ProjectWind::MessageReceived() to pass this message on and added
+			a menu item for it.
+
+2/6/99		Changed Method::GenerateCPP(), CodeChanged(), GenerateH() and
+			HSpecLength() to handle operators.
+
+			Changed Method::CodeChanged(), GenerateH(), GenerateCPP(),
+			Archive() and constructors to support pure virtual methods.
+
+1/24/99		Switched to common qstring.
+
+			Added backup facility to Project (and ProjectWind).
+
+10/7/98		Changed CPPParser::GetToken() so it never returns a string token
+			more than 250 characters long (including the quotes).  This prevents
+			crashes while trying to type a string.
+
+8/29/98		Changed RemoveSelectedItem() methods of MethodsView and
+			VariablesView to add 'd' key shortcut for the "Delete" button.
+
+6/16/98		Changed ClassWind ctor, FrameMoved() and FrameResized() methods
+			so the frame moving event triggered by the MovTo()/ResizeTo()
+			calls in the ctor (restoring the saved position) won't cause
+			the class' SetWindFrame() method to be called.  This fixes a
+			bug which caused classes to be dirtified just by looking at them.
+
+5/24/98		Changed Class::GenerateH() to ignore dividers when dealing with
+			access types, and when calculating the spec length.
+
+			Made Class::Import() read the access types.  Included creating
+			new XMLUtils module.
+
+5/23/98		Changed comment handling in CPPParser and TokenLookahead,
+			so the token returned for a comment is minimal.  Callers
+			(that accept comments) must check for comments and use the
+			new comment-retrieving methods to get the full comments.
+			This fixes the crashes on large comments, which were
+			especially a problem when commenting out big chunks of code.
+
+			Added CodeView::MessageReceived(), making it do a syntax-coloring
+			on cut, paste, or drop.
+
+			Enabled undo support in CodeView, now that R3 has undo handling
+			in BTextView.
+
+			Changed Class::GenerateH() so doesn't generate a class declaration
+			at all if there are no methods and no variables in the class.
+			This allows "hand-built" modules to be kept in the Castle Yankee
+			project without tiptoeing around name conflicts.
+
+			Changes to Method and Class to support inline methods.
+
+			Made CPPParser::GetToken() handle backslash-quoting withing
+			character constants.
+
+			Created qstring and augmented TextFile.
+
+			Made exporting of classes and projects work.
+
+			Added importing.  Well, almost.  Methods and variables need to
+			export/import their access types.
+
+4/22/98		Changed CodeView::ColorSyntax() so it doesn't set "lastColor"
+			if a run wasn't added (because it ended before "startChar").
+			Fixes some syntax-coloring bugs.
+
+4/17/98		Fixed a bug in CodeView::ColorSyntax(), which was trying to
+			detect the ugly notes hack in part by testing if "tokenStart"
+			was zero, but *after* "tokenStart" had been adjusted to go
+			into the run array.  I expect this won't fix all the syntax-
+			coloring bugs, though.
+
+4/16/98		Added Project::CloseAllClassWindows() and made ProjectWind
+			destructor call it.  This should fix the crash on quit, which
+			probably occurred because the project was released but not
+			necessarily deleted when the project window was closed.
+
+			Made Class and Project store window location info, and made
+			ClassWind and ProjectWind set and use them.
+
+			Changed MessageReceived of ProjectWind() and Project() so new
+			classes go after the selected class (if there is one).
+
+			Changed Project::ClassWindowClosing() so it doesn't lock.  This
+			is a potential race condition (but not very likely), but prevents
+			a deadlock when removing a class that still has its window open.
+
+			Changed ClassWind::MessageReceived() and Class::AddMethod() and
+			AddVariable() so methods and new variables go after the currently
+			selected one (if there is one).
+
+			--- posted ---
+
+4/10/98		Extended Ugly Notes Hack to be Cheap Divider hack.
+
+			--- posted ---
+
+4/8/98		Added ScriptBeIDE module, and made Project::GenerateCode() call
+			it.
+
+4/1/98		Tried changing MessageWind constructor to ensure that it always
+			draws the message.  Not fully successful.
+
+			Fixed CodeView::FindWord(), which would never find the first
+			character in the text (it had a >0 test instead of >=0).
+
+			Made CodeView::SetCode() do a ScrollToSelection().
+
+			Changed ClassWind::SetViewedCode() so when templates are shown
+			for new methods and variables, the return type is selected as
+			well as the method name.
+
+			Changed ClassWind so the class name and superclasses are now
+			edited together.
+
+3/31/98		Added locks to Project and Class and made most methods lock them.
+
+			Fixed a bug in EZPObjectFile::GetObject(), which was not adding
+			a reference if it got the object from the object cache.
+
+			Added MessageWind and made Project::GenerateCode() use it.
+
+			Made CastleYankeeApp::NewProjectFile() use the approved method
+			of setting the MIME type.
+
+3/11/98		Set up MIME types and icons (thanks Drew!).  Included having
+			CastleYankeeApp::NewProjectFile() set the MIME types of created files.
+
+			-- sent version to Drew --
+
+			Changed Method::CodeChanged() for slight less ugly notes hack--
+			this one doesn't require parentheses as long as the title is
+			quoted.
+
+3/10/98		Added open/save capabilities.
+
+			Made Project::GenerateCode() have child windows save changes.
+
+3/8/98		Implemented access control.
+
+			Added Auto-block pref and corresponding menu item in class wind.
+
+			Made class wind come up showing the .cpp preamble or .h preamble
+			as appropriate (and so long as the class has a name).
+
+3/6/98		Added preferences support and made ClassWind and CodeView
+			support a "colorSyntax" pref (controlled by a menu item).
+
+			Made EZPPersistent::Dirtify() virtual.
+
+			Created ClassElement class, and made Method and Variable
+			subclasses of it.  So far it just keeps the mod date.
+
+			Changed Class so it only generates .h and .cpp files if they're
+			out of date (or not created yet).  This included adding a "modTime"
+			ivar and DeepModTime() and (overridden) Dirtify() methods.
+
+			Changed CodeView::KeyDown() so it doesn't recolor syntax on
+			arrow keys.
+
+			Fixed CodeView::ColorSyntax() to do the color-from-selection-on
+			thing properly.  The problem before was that I was passing a
+			length as the second argument to SetRunArray() instead of a
+			finish point.
+
+			Implemented indent and unindent.
+
+3/5/98		Made EZPObjectCache::RemoveObject() delete the object if it
+			was in the cache.
+
+			Added info view and access menu to the Class wind, but they
+			aren't hooked up to anything yet.
+
+			Made the proportion of the Class wind frames (methods/variables
+			vs. code) adjustable by dragging the info view.  It doesn't look
+			great but it works and it's not going to get any better.
+
+3/4/98		Changed so mwbres builds directly into the executable.  The
+			trick was to make sure it ran in the post-link stage.  This
+			meant I could remove "Resources.sh" and "Menus.rsrc" from
+			the project.
+
+			Changed CodeView::ColorSyntax() to color "#include" (or any
+			"#" token) blue.
+
+			Created Code, the first class to be live in our Castle Yankee
+			project ("Castle Yankee Classes").
+
+			Added Q&D "progress" wind to Project::GenerateCode().
+
+			Changed Method to use Code.
+
+			Can now remove Methods, Variables, and Classes.
+
+			Fixed a bug in EZPObjectCache::RemoveObject(), which would
+			crash by trying to remove the object from the releasedQueue,
+			even if the object was NULL because it wasn't in the cache.
+
+			Can now rearrange the lists of Methods, Variables, and Classes.
+
+Changes prior to 3/4/98 not recorded.

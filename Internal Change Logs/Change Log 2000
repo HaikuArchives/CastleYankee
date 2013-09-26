@@ -1,0 +1,18 @@
+<change-log ee2:h-margin="57" ee2:v-margin="53" ee2:wind-height="636" ee2:wind-left="199" ee2:wind-top="78" ee2:wind-width="534" xmlns:ee2="http://folta.net/steve/EnglishEditorII">
+<title> Castle Yankee 2.0 Internal Change Log </title>
+
+<change-section-head> Changes </change-section-head><change-date> 2000.4.27 </change-date>
+<change>Recompiled for R5.  libprof.a had to be removed.</change><change-date> 2000.2.8 </change-date>
+<change>Made ClassWind ctor check if it actually found the &quot;public&quot; item in the accessMenu before marking it.  I don&apos;t know why it wouldn&apos;t be there, but it&apos;s causing an intermittent crash.</change><change-date> 2000.2.4 </change-date>
+<change>Changed XMLUtils::WriteDateAttribute() to write RFC-1123 format.</change><change-date> 2000.2.3 </change-date>
+<change>Changed XMLUtils::WriteDateAttribute() to write in a format which hopefully won&apos;t confuse parsedate(), which I think the old format was doing.</change><change-date> 2000.1.31 </change-date>
+<change>Changes to Class so operator[] and operator() (which both have two tokens in the operator name) work correctly.</change><change-date> 2000.1.29 </change-date>
+<change>Added missing CanRearrange() methods to MethodsView and VariablesView.</change>
+
+<change-date> 2000.1.23 </change-date>
+<change>
+	Finished creating the 2.0 version.
+</change>
+
+
+</change-log>

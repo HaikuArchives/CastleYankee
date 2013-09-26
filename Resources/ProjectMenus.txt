@@ -1,0 +1,30 @@
+Menu File
+	"New Project..." 	NewP	Cmd-Option-N
+	"Open Project..."	OpnP	Cmd-O
+	"Save"           	Save	Cmd-S
+	"Close"          	_QRQ	Cmd-W
+	---
+	"Quit"           	_QRQ	Cmd-Q
+End
+
+Menu Edit
+	"Undo"      	UNDO	Cmd-Z
+	---
+	"Cut"       	CCUT	Cmd-X
+	"Copy"      	COPY	Cmd-C
+	"Paste"     	PSTE	Cmd-V
+	"Select All"	SALL	Cmd-A
+End
+
+
+Menu Project
+	"New Class"               	NewC	Cmd-N
+	---
+	"Export Selected Class..."	ExpC
+	"Export All Classes..."   	ExpP
+	"Import Classes..."       	Impt
+	---
+	"Generate Code"           	GenC	Cmd-M
+	"Backup"					Bckp	Cmd-B
+	"Prepare Upload"          	PrUp	Cmd-U
+End

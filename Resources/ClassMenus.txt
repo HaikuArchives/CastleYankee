@@ -1,0 +1,38 @@
+Menu File
+	"New Project..." 	NewP	Cmd-Option-N
+	"Open Project..."	OpnP	Cmd-O
+	"Save"           	Save	Cmd-S
+	"Close"          	_QRQ	Cmd-W
+	---
+	"Quit"           	_QRQ	Cmd-Q
+End
+
+Menu Edit
+	"Undo"      	UNDO	Cmd-Z
+	---
+	"Cut"       	CCUT	Cmd-X
+	"Copy"      	COPY	Cmd-C
+	"Paste"     	PSTE	Cmd-V
+	"Select All"	SALL	Cmd-A
+	---
+	"Indent"      	>>>>	Cmd-]
+	"Unindent"    	<<<<	Cmd-[
+	---
+	"Color Syntax"	SyCl	Cmd-Y
+	"Auto-block"  	AuBl	Cmd-Shift-[
+End
+
+Menu Project
+	"New Class"    	NewC
+	---
+	"Generate Code"	GenC	Cmd-M
+End
+
+Menu Class
+	"New Method"         	NewM	Cmd-N
+	"New Variable"       	NewV	Cmd-Shift-N
+	---
+	"Name & Superclasses"	Name
+	".h Preamble"        	IncH	Cmd-Shift-H
+	".cpp Preamble"      	IncC	Cmd-H
+End
